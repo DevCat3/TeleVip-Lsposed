@@ -2,8 +2,13 @@ package com.my.televip.features;
 
 import static com.my.televip.MainHook.lpparam;
 
+
+import androidx.annotation.NonNull;
+
 import com.my.televip.language.Language;
 import com.my.televip.xSharedPreferences;
+
+import java.util.ArrayList;
 
 import de.robv.android.xposed.XSharedPreferences;
 
@@ -47,24 +52,39 @@ public class FeatureManager {
 
     public static void readFeature(){
         xSharedPreferences.xSharedPre = new XSharedPreferences(lpparam.packageName, Language.strTelevip);
-        if (FeatureManager.isTelePremium()) {TelePremium.init();}
-        if (FeatureManager.isHideSeenGroup() || FeatureManager.isHideSeenPrivate()) { HideSeen.init(); }
+        if (FeatureManager.isTelePremium()) { TelePremium.init(); }
+        if (FeatureManager.isHideSeenGroup() || isHideSeenPrivate()) { HideSeen.init(); }
         if (FeatureManager.isNoStoryRead()){ NoStoryRead.init(); }
         if (FeatureManager.isHideTyping()){ HideTyping.init(); }
         if (FeatureManager.isUnlockChannelFeature()){ UnlockChannelFeature.init(); }
         if (FeatureManager.isAllowSaveToGallery()){ AllowSaveToGallery.init(); }
-        if (FeatureManager.isHideOnline()){ com.my.televip.features.HideOnline.init(); }
-        if (FeatureManager.isPreventMedia()){ com.my.televip.features.PreventMedia.init(); }
+        if (FeatureManager.isHideOnline()){ HideOnline.init(); }
+        if (FeatureManager.isPreventMedia()){ PreventMedia.init(); }
         if (FeatureManager.ishowDeletedMessages()){
-
             NEWAntiRecall.initProcessing(lpparam.classLoader);
             NEWAntiRecall.init(lpparam.classLoader);
             NEWAntiRecall.initAutoDownload(lpparam.classLoader);
         }
         if (FeatureManager.isDisableStories()){ DisableStories.init(); }
-        if (FeatureManager.isHidePhone()){
-            com.my.televip.features.HidePhone.init();
-        }
+        if (FeatureManager.isHidePhone()){ HidePhone.init(); }
+        //SaveEditMessage.init();
+    }
+
+    public static @NonNull ArrayList<String> getArrayList() {
+        ArrayList<String> list = new ArrayList<>();
+        list.add(Language.HideSeenUser);
+        list.add(Language.HideSeenGroups);
+        list.add(Language.HideStoryView);
+        list.add(Language.HideOnline);
+        list.add(Language.HidePhone);
+        list.add(Language.DisableStories);
+        list.add(Language.HideTyping);
+        list.add(Language.ShowDeletedMessages);
+        list.add(Language.PreventMedia);
+        list.add(Language.UnlockAllRestricted);
+        list.add(Language.AllowSavingvideos);
+        list.add(Language.TelegramPremium);
+        return list;
     }
 
 }

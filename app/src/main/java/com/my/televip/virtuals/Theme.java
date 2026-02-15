@@ -9,9 +9,11 @@ import java.util.List;
 import de.robv.android.xposed.XposedHelpers;
 import com.my.televip.ClientChecker;
 import com.my.televip.Utils;
+import com.my.televip.loadClass;
 import com.my.televip.obfuscate.AutomationResolver;
 
 public class Theme {
+    public static final int key_windowBackgroundWhiteBlackText = 0xff222222;
     public static TextPaint getTextPaint(ClassLoader classLoader)
     {
         Class<?> theme = XposedHelpers.findClassIfExists(AutomationResolver.resolve("org.telegram.ui.ActionBar.Theme"), classLoader);
@@ -57,4 +59,15 @@ public class Theme {
 
         return null;
     }
+
+    public static int getColor(int key){
+        return (int)XposedHelpers.callStaticMethod(loadClass.getThemeClass(), "getColor", key);
+    }
+    public static int getKey_windowBackgroundGray(){
+        return (int)XposedHelpers.getStaticObjectField(loadClass.getThemeClass(), "key_windowBackgroundGray");
+    }
+    public static int getKey_windowBackgroundWhite(){
+        return (int)XposedHelpers.getStaticObjectField(loadClass.getThemeClass(), "key_windowBackgroundWhite");
+    }
+
 }

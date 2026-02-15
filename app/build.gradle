@@ -1,6 +1,4 @@
-plugins {
-    alias(libs.plugins.android.application)
-}
+apply plugin: 'com.android.application'
 
 android {
     namespace 'com.my.televip'
@@ -10,8 +8,8 @@ android {
         applicationId "com.my.televip"
         minSdk 27
         targetSdk 36
-        versionCode 1
-        versionName "2.0"
+        versionCode 175
+        versionName "2.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,14 +24,15 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    ndkVersion '21.4.7075529'
+
+    ndkVersion '26.1.10909125'
 }
 
 dependencies {
-
     implementation libs.appcompat
     implementation libs.material
-    compileOnly files('libs/classes.jar')
+    compileOnly libs.api
+    implementation (libs.preference)
     implementation(libs.gson)
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit

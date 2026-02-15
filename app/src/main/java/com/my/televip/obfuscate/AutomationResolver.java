@@ -4,6 +4,7 @@ package com.my.televip.obfuscate;
 
 import com.my.televip.ClientChecker;
 import com.my.televip.Clients.Teegra;
+import com.my.televip.Clients.Telegraph;
 import com.my.televip.LoaderParameter;
 import com.my.televip.Utils;
 import com.my.televip.Clients.Cherrygram;
@@ -26,6 +27,7 @@ import java.util.Map;
 
 import de.robv.android.xposed.XC_MethodHook;
 
+
 public class AutomationResolver {
     public static Map<String, LoaderParameter> Loaders = new HashMap<>();
 
@@ -47,50 +49,53 @@ public class AutomationResolver {
          {
              if (TGConnect.ClassResolver.has(className))
                  return TGConnect.ClassResolver.resolve(className);
-         }  else if (ClientChecker.check(ClientChecker.ClientType.Nagram, pkgName))
+         } else if (ClientChecker.check(ClientChecker.ClientType.Nagram, pkgName))
          {
              if (Nagram.ClassResolver.has(className))
                  return Nagram.ClassResolver.resolve(className);
-         }else if (ClientChecker.check(ClientChecker.ClientType.Nicegram, pkgName))
+         } else if (ClientChecker.check(ClientChecker.ClientType.Nicegram, pkgName))
          {
              if (Nicegram.ClassResolver.has(className))
                  return Nicegram.ClassResolver.resolve(className);
-         }else if (ClientChecker.check(ClientChecker.ClientType.Cherrygram, pkgName))
+         } else if (ClientChecker.check(ClientChecker.ClientType.Cherrygram, pkgName))
          {
              if (Cherrygram.ClassResolver.has(className))
                  return Cherrygram.ClassResolver.resolve(className);
-         }else if (ClientChecker.check(ClientChecker.ClientType.TelegramBeta, pkgName))
+         } else if (ClientChecker.check(ClientChecker.ClientType.TelegramBeta, pkgName))
          {
              if (TelegramBeta.ClassResolver.has(className))
                  return TelegramBeta.ClassResolver.resolve(className);
-         }else if (ClientChecker.check(ClientChecker.ClientType.NagramX, pkgName))
+         } else if (ClientChecker.check(ClientChecker.ClientType.NagramX, pkgName))
          {
              if (NagramX.ClassResolver.has(className))
                  return NagramX.ClassResolver.resolve(className);
-         }else if (ClientChecker.check(ClientChecker.ClientType.XPlus, pkgName))
+         } else if (ClientChecker.check(ClientChecker.ClientType.XPlus, pkgName))
          {
              if (XPlus.ClassResolver.has(className))
                  return XPlus.ClassResolver.resolve(className);
-         }else if (ClientChecker.check(ClientChecker.ClientType.iMe, pkgName))
+         } else if (ClientChecker.check(ClientChecker.ClientType.iMe, pkgName))
          {
              if (iMe.ClassResolver.has(className))
                  return iMe.ClassResolver.resolve(className);
-         }else if (ClientChecker.check(ClientChecker.ClientType.iMeWeb, pkgName))
+         } else if (ClientChecker.check(ClientChecker.ClientType.iMeWeb, pkgName))
          {
              if (iMeWeb.ClassResolver.has(className))
                  return iMeWeb.ClassResolver.resolve(className);
-         }else if (ClientChecker.check(ClientChecker.ClientType.forkgram, pkgName))
+         } else if (ClientChecker.check(ClientChecker.ClientType.forkgram, pkgName))
          {
              if (forkgram.ClassResolver.has(className))
                  return forkgram.ClassResolver.resolve(className);
-         }else if (ClientChecker.check(ClientChecker.ClientType.forkgramBeta, pkgName))
+         } else if (ClientChecker.check(ClientChecker.ClientType.forkgramBeta, pkgName))
          {
              if (forkgramBeta.ClassResolver.has(className))
                  return forkgramBeta.ClassResolver.resolve(className);
-         }else if (ClientChecker.check(ClientChecker.ClientType.Teegra, pkgName))
-         {
+         } else if (ClientChecker.check(ClientChecker.ClientType.Teegra, pkgName)) {
              if (Teegra.ClassResolver.has(className))
                  return Teegra.ClassResolver.resolve(className);
+         } else if (ClientChecker.check(ClientChecker.ClientType.Telegraph, pkgName))
+         {
+             if (Telegraph.ClassResolver.has(className))
+                 return Telegraph.ClassResolver.resolve(className);
          }
 
         return className;
@@ -98,6 +103,7 @@ public class AutomationResolver {
 
     public static Class<?>[] resolveObject(String name, String pkgName)
     {
+        loadParameter(name);
        if (ClientChecker.check(ClientChecker.ClientType.Telegram, pkgName))
         {
             if (Telegram.ParameterResolver.has(name)) {
@@ -113,65 +119,70 @@ public class AutomationResolver {
            if (TelegramPlus.ParameterResolver.has(name)) {
                return TelegramPlus.ParameterResolver.resolve(name);
            }
-       }else if (ClientChecker.check(ClientChecker.ClientType.TGConnect, pkgName))
+       } else if (ClientChecker.check(ClientChecker.ClientType.TGConnect, pkgName))
        {
            if (TGConnect.ParameterResolver.has(name)) {
                return TGConnect.ParameterResolver.resolve(name);
            }
-       }else if (ClientChecker.check(ClientChecker.ClientType.Nagram, pkgName))
+       } else if (ClientChecker.check(ClientChecker.ClientType.Nagram, pkgName))
        {
            if (Nagram.ParameterResolver.has(name)) {
                return Nagram.ParameterResolver.resolve(name);
            }
-       }else if (ClientChecker.check(ClientChecker.ClientType.Nicegram, pkgName))
+       } else if (ClientChecker.check(ClientChecker.ClientType.Nicegram, pkgName))
        {
            if (Nicegram.ParameterResolver.has(name)) {
                return Nicegram.ParameterResolver.resolve(name);
            }
-       }else if (ClientChecker.check(ClientChecker.ClientType.Cherrygram, pkgName))
+       } else if (ClientChecker.check(ClientChecker.ClientType.Cherrygram, pkgName))
        {
            if (Cherrygram.ParameterResolver.has(name)) {
                return Cherrygram.ParameterResolver.resolve(name);
            }
-       }else if (ClientChecker.check(ClientChecker.ClientType.TelegramBeta, pkgName))
+       } else if (ClientChecker.check(ClientChecker.ClientType.TelegramBeta, pkgName))
        {
            if (TelegramBeta.ParameterResolver.has(name)) {
                return TelegramBeta.ParameterResolver.resolve(name);
            }
-       }else if (ClientChecker.check(ClientChecker.ClientType.NagramX, pkgName))
+       } else if (ClientChecker.check(ClientChecker.ClientType.NagramX, pkgName))
        {
            if (NagramX.ParameterResolver.has(name)) {
                return NagramX.ParameterResolver.resolve(name);
            }
-       }else if (ClientChecker.check(ClientChecker.ClientType.XPlus, pkgName))
+       } else if (ClientChecker.check(ClientChecker.ClientType.XPlus, pkgName))
        {
            if (XPlus.ParameterResolver.has(name)) {
                return XPlus.ParameterResolver.resolve(name);
            }
-       }else if (ClientChecker.check(ClientChecker.ClientType.iMe, pkgName))
+       } else if (ClientChecker.check(ClientChecker.ClientType.iMe, pkgName))
        {
            if (iMe.ParameterResolver.has(name)) {
                return iMe.ParameterResolver.resolve(name);
            }
-       }else if (ClientChecker.check(ClientChecker.ClientType.iMeWeb, pkgName))
+       } else if (ClientChecker.check(ClientChecker.ClientType.iMeWeb, pkgName))
        {
            if (iMeWeb.ParameterResolver.has(name)) {
                return iMeWeb.ParameterResolver.resolve(name);
            }
-       }else if (ClientChecker.check(ClientChecker.ClientType.forkgram, pkgName))
+       } else if (ClientChecker.check(ClientChecker.ClientType.forkgram, pkgName))
        {
            if (forkgram.ParameterResolver.has(name)) {
                return forkgram.ParameterResolver.resolve(name);
            }
-       }else if (ClientChecker.check(ClientChecker.ClientType.forkgramBeta, pkgName))
+       } else if (ClientChecker.check(ClientChecker.ClientType.forkgramBeta, pkgName))
        {
            if (forkgramBeta.ParameterResolver.has(name)) {
                return forkgramBeta.ParameterResolver.resolve(name);
            }
-       }else if (ClientChecker.check(ClientChecker.ClientType.Teegra, pkgName))
+       } else if (ClientChecker.check(ClientChecker.ClientType.Teegra, pkgName))
        {
            if (Teegra.ParameterResolver.has(name)) {
                return Teegra.ParameterResolver.resolve(name);
+           }
+       } else if (ClientChecker.check(ClientChecker.ClientType.Telegraph, pkgName))
+       {
+           if (Telegraph.ParameterResolver.has(name)) {
+               return Telegraph.ParameterResolver.resolve(name);
            }
        }
         return null;
@@ -227,7 +238,7 @@ public class AutomationResolver {
                 if (TGConnect.MethodResolver.has(className, name))
                     return TGConnect.MethodResolver.resolve(className, name);
             }
-        }else if (ClientChecker.check(ClientChecker.ClientType.Nagram, pkgName))
+        } else if (ClientChecker.check(ClientChecker.ClientType.Nagram, pkgName))
         {
             if (type == ResolverType.Field)
             {
@@ -239,7 +250,7 @@ public class AutomationResolver {
                 if (Nagram.MethodResolver.has(className, name))
                     return Nagram.MethodResolver.resolve(className, name);
             }
-        }else if (ClientChecker.check(ClientChecker.ClientType.Nicegram, pkgName))
+        } else if (ClientChecker.check(ClientChecker.ClientType.Nicegram, pkgName))
         {
             if (type == ResolverType.Field)
             {
@@ -251,7 +262,7 @@ public class AutomationResolver {
                 if (Nicegram.MethodResolver.has(className, name))
                     return Nicegram.MethodResolver.resolve(className, name);
             }
-        }else if (ClientChecker.check(ClientChecker.ClientType.Cherrygram, pkgName))
+        } else if (ClientChecker.check(ClientChecker.ClientType.Cherrygram, pkgName))
         {
             if (type == ResolverType.Field)
             {
@@ -263,7 +274,7 @@ public class AutomationResolver {
                 if (Cherrygram.MethodResolver.has(className, name))
                     return Cherrygram.MethodResolver.resolve(className, name);
             }
-        }else if (ClientChecker.check(ClientChecker.ClientType.TelegramBeta, pkgName))
+        } else if (ClientChecker.check(ClientChecker.ClientType.TelegramBeta, pkgName))
         {
             if (type == ResolverType.Field)
             {
@@ -275,7 +286,7 @@ public class AutomationResolver {
                 if (TelegramBeta.MethodResolver.has(className, name))
                     return TelegramBeta.MethodResolver.resolve(className, name);
             }
-        }else if (ClientChecker.check(ClientChecker.ClientType.NagramX, pkgName))
+        } else if (ClientChecker.check(ClientChecker.ClientType.NagramX, pkgName))
         {
             if (type == ResolverType.Field)
             {
@@ -287,7 +298,7 @@ public class AutomationResolver {
                 if (NagramX.MethodResolver.has(className, name))
                     return NagramX.MethodResolver.resolve(className, name);
             }
-        }else if (ClientChecker.check(ClientChecker.ClientType.XPlus, pkgName))
+        } else if (ClientChecker.check(ClientChecker.ClientType.XPlus, pkgName))
         {
             if (type == ResolverType.Field)
             {
@@ -299,7 +310,7 @@ public class AutomationResolver {
                 if (XPlus.MethodResolver.has(className, name))
                     return XPlus.MethodResolver.resolve(className, name);
             }
-        }else if (ClientChecker.check(ClientChecker.ClientType.iMe, pkgName))
+        } else if (ClientChecker.check(ClientChecker.ClientType.iMe, pkgName))
         {
             if (type == ResolverType.Field)
             {
@@ -311,7 +322,7 @@ public class AutomationResolver {
                 if (iMe.MethodResolver.has(className, name))
                     return iMe.MethodResolver.resolve(className, name);
             }
-        }else if (ClientChecker.check(ClientChecker.ClientType.iMeWeb, pkgName))
+        } else if (ClientChecker.check(ClientChecker.ClientType.iMeWeb, pkgName))
         {
             if (type == ResolverType.Field)
             {
@@ -323,7 +334,7 @@ public class AutomationResolver {
                 if (iMeWeb.MethodResolver.has(className, name))
                     return iMeWeb.MethodResolver.resolve(className, name);
             }
-        }else if (ClientChecker.check(ClientChecker.ClientType.forkgram, pkgName))
+        } else if (ClientChecker.check(ClientChecker.ClientType.forkgram, pkgName))
         {
             if (type == ResolverType.Field)
             {
@@ -335,7 +346,7 @@ public class AutomationResolver {
                 if (forkgram.MethodResolver.has(className, name))
                     return forkgram.MethodResolver.resolve(className, name);
             }
-        }else if (ClientChecker.check(ClientChecker.ClientType.forkgramBeta, pkgName))
+        } else if (ClientChecker.check(ClientChecker.ClientType.forkgramBeta, pkgName))
         {
             if (type == ResolverType.Field)
             {
@@ -347,7 +358,7 @@ public class AutomationResolver {
                 if (forkgramBeta.MethodResolver.has(className, name))
                     return forkgramBeta.MethodResolver.resolve(className, name);
             }
-        }else if (ClientChecker.check(ClientChecker.ClientType.Teegra, pkgName))
+        } else if (ClientChecker.check(ClientChecker.ClientType.Teegra, pkgName))
         {
             if (type == ResolverType.Field)
             {
@@ -359,7 +370,22 @@ public class AutomationResolver {
                 if (Teegra.MethodResolver.has(className, name))
                     return Teegra.MethodResolver.resolve(className, name);
             }
+        } else if (ClientChecker.check(ClientChecker.ClientType.Telegraph, pkgName))
+        {
+            if (type == ResolverType.Field)
+            {
+                if (Telegraph.FieldResolver.has(className, name))
+                    return Telegraph.FieldResolver.resolve(className, name);
+            }
+            else if (type == ResolverType.Method)
+            {
+                if (Telegraph.MethodResolver.has(className, name))
+                    return Telegraph.MethodResolver.resolve(className, name);
+            }
         }
+
+        name = name.replace("storyEntitiesAllowed2", "storyEntitiesAllowed");
+        name = name.replace("hasStories2", "hasStories");
         return name;
     }
 
@@ -378,10 +404,13 @@ public class AutomationResolver {
     }
     public static Object[] merge(Class<?>[] classes, XC_MethodHook hook)
     {
-        Object[] result = new Object[classes.length + 1];
-        System.arraycopy(classes, 0, result, 0, classes.length);
-        result[classes.length] = hook;
-        return result;
+        if (classes != null) {
+            Object[] result = new Object[classes.length + 1];
+            System.arraycopy(classes, 0, result, 0, classes.length);
+            result[classes.length] = hook;
+            return result;
+        }
+        return null;
     }
 
 public static void loadParameter(String name){
@@ -401,7 +430,7 @@ public static void loadParameter(String name){
             Loaders.put(ClientChecker.getClientType(ClientChecker.ClientType.forkgram), new forkgram.loadParameter());
             Loaders.put(ClientChecker.getClientType(ClientChecker.ClientType.forkgramBeta), new forkgramBeta.loadParameter());
             Loaders.put(ClientChecker.getClientType(ClientChecker.ClientType.Teegra), new Teegra.loadParameter());
-
+            Loaders.put(ClientChecker.getClientType(ClientChecker.ClientType.Telegraph), new Telegraph.loadParameter());
         }
         if (!Loaders.isEmpty()) {
             LoaderParameter loader = Loaders.get(Utils.pkgName);
@@ -439,6 +468,12 @@ public static void loadParameter(String name){
                         break;
                     case "11":
                         loader.loadParameter11();
+                        break;
+                    case "12":
+                        loader.loadParameter12();
+                        break;
+                    case "13":
+                        loader.loadParameter13();
                         break;
                 }
         }

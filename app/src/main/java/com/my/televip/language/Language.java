@@ -1,12 +1,8 @@
 package com.my.televip.language;
 
 
-import android.content.Context;
-import android.content.res.Configuration;
+import com.my.televip.virtuals.messenger.LocaleController;
 
-import com.my.televip.MainHook;
-
-import java.util.Locale;
 
 public class Language {
     public static String ToTheBeginning;
@@ -19,6 +15,7 @@ public class Language {
     public static String ChangeTo;
     public static String NameDeleted;
     public static String GhostMode;
+    public static String byMustafa;
     public static String HideSeenUser;
     public static String HideSeenGroups;
     public static String HideStoryView;
@@ -40,9 +37,11 @@ public class Language {
     public static String DisableStories;
     public static String strTelevip="televip";
 
-    public static void init(Context context)
+    public static void init()
     {
-        if (getAppLanguage(context).equals("ar")) {
+        LocaleController localeController = new LocaleController();
+
+        if (localeController.getCurrentLocale().getLanguage().equals("ar")) {
             ToTheBeginning="اذهب إلى أول رسالة";
             ToTheMessage="إلى الرسالة";
             InputMessageId="ادخل معرف الرسالة";
@@ -53,6 +52,7 @@ public class Language {
             ChangeTo="تم تغير الى";
             NameDeleted="تم حذف الاسم";
             GhostMode="وضع الشبح 👻";
+            byMustafa="تم تطوير من قبل @m_1_iq";
             HideSeenUser="اخفاء علامة الاستلام من المحادثة الخاصة";
             HideSeenGroups="اخفاء علامة الاستلام من المجموعات والقنوات";
             HideStoryView="اخفاء مشاهدة قصة";
@@ -72,7 +72,7 @@ public class Language {
             ToTheClipboard = "' إلى الحافظة";
             UserOffline ="لست متصلاً بالإنترنت";
             DisableStories="اخفاء القصص";
-        }else if (getAppLanguage(context).equals("zh")) {
+        }else if (localeController.getCurrentLocale().getLanguage().equals("zh")) {
             ToTheBeginning = "跳转到第一条消息";
             ToTheMessage = "跳转到消息";
             InputMessageId = "输入消息 ID";
@@ -83,6 +83,7 @@ public class Language {
             ChangeTo = "更改为";
             NameDeleted = "名称已删除";
             GhostMode = "幽灵模式 👻";
+            byMustafa="by @m_1_iq";
             HideSeenUser = "隐藏私人聊天的已读状态";
             HideSeenGroups = "隐藏群组和频道的已读状态";
             HideStoryView = "隐藏 '故事观看' 状态";
@@ -113,6 +114,7 @@ public class Language {
             ChangeTo="Change to";
             NameDeleted = "Name deleted";
             GhostMode="Ghost Mode 👻";
+            byMustafa="by @m_1_iq";
             HideSeenUser = "Hide 'Seen' status for private chats";
             HideSeenGroups = "Hide 'Seen' status for groups and channels";
             HideStoryView = "Hide 'Story View' status";
@@ -134,14 +136,5 @@ public class Language {
             DisableStories ="Disable 'Stories'";
         }
     }
-    public static String getAppLanguage(Context context) {
-        Configuration config = context.getResources().getConfiguration();
-        Locale locale;
 
-        // تحقق من إصدار النظام للحصول على Locale بالطريقة الصحيحة
-        locale = config.getLocales().get(0); // في الإصدارات الجديدة
-
-        // إرجاع اسم اللغة
-        return locale.getLanguage(); // مثال: "ar" للعربية
-    }
 }
